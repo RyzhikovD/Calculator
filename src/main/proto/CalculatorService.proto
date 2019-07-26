@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package ru.ncedu.calculator;
+
+message CalculatorRequest {
+    double firstOperand = 1;
+    double secondOperand = 2;
+    string operation = 3;
+}
+
+message CalculatorResponse {
+    double answer = 1;
+}
+
+service ru.ncedu.sevices.CalculatorService {
+    rpc calculate(CalculatorRequest) returns (CalculatorResponse);
+}
