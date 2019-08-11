@@ -8,6 +8,7 @@ import ru.ncedu.calculator.CalculatorRequest;
 import ru.ncedu.calculator.CalculatorResponse;
 import ru.ncedu.calculator.CalculatorServiceGrpc;
 
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,12 +20,22 @@ public class GrpcClient {
                 .usePlaintext()
                 .build();
         CalculatorServiceGrpc.CalculatorServiceBlockingStub stub = CalculatorServiceGrpc.newBlockingStub(channel);
+
+        int firstOperand;
+        int secondOperand;
+        String operation;
+        Scanner scanner = new Scanner(System.in);
+        firstOperand = scanner.nextInt();
+        secondOperand = scanner.nextInt();
+        operation = scanner.next();
+
         try {
             CalculatorResponse calculatorResponse = stub.calculate(CalculatorRequest.newBuilder()
-                    .setFirstOperand(4)
-                    .setSecondOperand(6)
-                    .setOperation("rg")
+                    .setFirstOperand(firstOperand)
+                    .setSecondOperand(secondOperand)
+                    .setOperation(operation)
                     .build());
+//            System.out.println("calculatorResponse.getAnswer() = " + calculatorResponse.getAnswer());
         } catch (StatusRuntimeException e) {
             if (e.getStatus().getCode() == Status.Code.UNIMPLEMENTED) {
                 logger.log(Level.SEVERE, "Operation not implemented", e);
