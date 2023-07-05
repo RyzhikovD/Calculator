@@ -9,7 +9,7 @@
     <version>1.0</version>
 
     <properties>
-        <grpc.version>1.17.1</grpc.version>
+        <grpc.version>1.53.0</grpc.version>
         <protoc.version>3.5.1-1</protoc.version>
     </properties>
 
